@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Typography } from '@material-ui/core';
 import Navbar from './Navbar';
-import Drawer from './Drawer';
+import Sidebar from './Sidebar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar, // necessary for content to be below app bar
+    ...theme.mixins.toolbar // necessary for content to be below app bar
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(3)
   },
 }));
 
@@ -30,7 +30,7 @@ const Container = () => {
       <Navbar
         drawerOpened={drawerOpened}
         onChange={() => setDrawerOpened(!drawerOpened)} />
-      <Drawer
+      <Sidebar
         drawerOpened={drawerOpened}
         onChange={() => setDrawerOpened(!drawerOpened)} />
       <main className={classes.content}>

@@ -12,25 +12,26 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: appConsts.DRAWER_WIDTH,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'nowrap'
   },
   drawerOpen: {
     width: appConsts.DRAWER_WIDTH,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
     overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(7) + 1,
-    },
+    width: theme.spacing(7) + 1
+  },
+  listItemIcon: {
+    minWidth: 24,
+    paddingRight: 16
   },
   toolbar: {
     display: 'flex',
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Navbar = props => {
+const Sidebar = props => {
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -66,7 +67,7 @@ const Navbar = props => {
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon} >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -75,7 +76,7 @@ const Navbar = props => {
       <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -84,4 +85,4 @@ const Navbar = props => {
   );
 };
 
-export default Navbar;
+export default Sidebar;
