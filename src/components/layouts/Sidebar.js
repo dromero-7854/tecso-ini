@@ -1,11 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, IconButton, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Drawer, IconButton, Divider, Box, List, ListItem, ListItemIcon, ListItemText, Typography, Avatar } from '@material-ui/core';
+import deepOrange from '@material-ui/core/colors/deepOrange';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import FullLogo from '../../images/full-logo.png';
 import * as appConsts from '../../consts/app-consts';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +42,56 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
+    backgroundColor: '#1e2129',
     ...theme.mixins.toolbar // necessary for content to be below app bar
+  },
+  toggleButton: {
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#37474f'
+    }
+  },
+  fullLogo: {
+    width: 90
+  },
+  userCard: {
+    backgroundColor: '#1e2129',
+    padding: '0 5px 5px 5px'
+  },
+  userFullName: {
+    color: '#fff',
+    fontSize: 13,
+    letterSpacing: 1
+  },
+  email: {
+    color: '#fff',
+    fontSize: 12,
+    textTransform: 'lowercase',
+    lineHeight: '1.77'
+  },
+  avatarBox: {
+    height: 28,
+    marginBottom: 28,
+    backgroundColor: '#1e2129'
+  },
+  avatar: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    marginBottom: -20,
+    border: 'solid 2px #2d323c',
+  },
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[600],
+  },
+  listBox: {
+    padding: '4px 0 4px 0'
+  },
+  visible: {
+    visibility: 'visible'
+  },
+  collapse: {
+    visibility: 'collapse'
   }
 }));
 
@@ -47,7 +100,7 @@ const Sidebar = props => {
   const theme = useTheme();
   return (
     <Drawer
-      variant="permanent"
+      variant='permanent'
       className={clsx(classes.drawer, {
         [classes.drawerOpen]: props.drawerOpened,
         [classes.drawerClose]: !props.drawerOpened
@@ -59,27 +112,66 @@ const Sidebar = props => {
         })
       }}>
       <div className={classes.toolbar}>
-        <IconButton onClick={() => props.onChange()}>
-          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
+        <div style={{ width: '100%' }}>
+          <Box display='flex' alignItems='center'>
+            <Box display='flex' flexGrow={1}>
+              <img src={FullLogo} className={classes.fullLogo} alt='app logo' />
+            </Box>
+            <Box>
+              <IconButton
+                onClick={() => props.onChange()}
+                className={classes.toggleButton}>
+                {theme.direction === 'rtl' ? <ChevronRightIcon fontSize='small' /> : <ChevronLeftIcon fontSize='small' />}
+              </IconButton>
+            </Box>
+          </Box>
+        </div>
       </div>
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon className={classes.listItemIcon} >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      <div style={{ width: '100%' }}>
+        <Box className={classes.userCard}>
+          <Box>
+            <Typography variant='overline' display='block' noWrap='true' align='center'
+              className={clsx(classes.userFullName, {
+                [classes.visible]: props.drawerOpened,
+                [classes.collapse]: !props.drawerOpened
+              })}>
+              Dante Romero
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant='overline' display='block' noWrap='true' align='center'
+              className={clsx(classes.email, {
+                [classes.visible]: props.drawerOpened,
+                [classes.collapse]: !props.drawerOpened
+              })}>
+              rl.dante@gmail.com
+            </Typography>
+          </Box>
+        </Box>
+        <Box display='flex' className={classes.avatarBox} justifyContent='center'>
+          <Avatar className={[classes.orange, classes.avatar]}>DR</Avatar>
+        </Box>
+      </div>
+      <List className={classes.listBox}>
+        <ListItem button>
+          <ListItemIcon className={classes.listItemIcon} > <DateRangeIcon /> </ListItemIcon>
+          <ListItemText primary='Agenda' disableTypography='true' />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon className={classes.listItemIcon} > <AccountBoxIcon /> </ListItemIcon>
+          <ListItemText primary='Pacientes' disableTypography='true' />
+        </ListItem>
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon className={classes.listItemIcon}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      <List className={classes.listBox}>
+        <ListItem button>
+          <ListItemIcon className={classes.listItemIcon} > <SettingsIcon /> </ListItemIcon>
+          <ListItemText primary='Configuración' disableTypography='true' />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon className={classes.listItemIcon} > <PowerSettingsNewIcon /> </ListItemIcon>
+          <ListItemText primary='Logout' disableTypography='true' />
+        </ListItem>
       </List>
     </Drawer>
   );

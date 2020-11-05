@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiToolbar-gutters': {
       paddingLeft: 16,
       paddingRight: 16
-    }
+    },
+    backgroundColor: '#fff'
   },
   appBarShift: {
     marginLeft: appConsts.DRAWER_WIDTH,
@@ -27,23 +28,20 @@ const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: 'none'
+  },
+  menuIcon: {
+    color: '#1e2129'
   }
 }));
 
 const Navbar = props => {
   const classes = useStyles();
   return (
-    <AppBar
-      position="fixed"
-      className={clsx(classes.appBar, { [classes.appBarShift]: props.drawerOpened })}>
+    <AppBar elevation={2} position='fixed' className={clsx(classes.appBar, { [classes.appBarShift]: props.drawerOpened })}>
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={() => props.onChange()}
-          edge="start"
-          className={clsx({ [classes.hide]: props.drawerOpened })}>
-          <MenuIcon />
+        <IconButton color='default' aria-label='open drawer' onClick={() => props.onChange()}
+          edge='start' className={clsx(classes.menuIcon, { [classes.hide]: props.drawerOpened })}>
+          <MenuIcon fontSize='small' />
         </IconButton>
       </Toolbar>
     </AppBar>
