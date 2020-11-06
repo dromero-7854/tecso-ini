@@ -1,16 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
+import { withRouter } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, IconButton, Divider, Box, List, ListItem, ListItemIcon, ListItemText, Typography, Avatar } from '@material-ui/core';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import FullLogo from '../../images/full-logo.png';
 import * as appConsts from '../../consts/app-consts';
+import * as routerConfig from '../../config/router/routes';
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Sidebar = props => {
+  const { history } = props;
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -157,14 +158,14 @@ const Sidebar = props => {
         </Box>
       </div>
       <List className={classes.listBox}>
-        <ListItem button>
-          <ListItemIcon className={classes.listItemIcon} > <DateRangeIcon /> </ListItemIcon>
-          <ListItemText primary='Agenda' disableTypography={true} />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon className={classes.listItemIcon} > <AccountBoxIcon /> </ListItemIcon>
-          <ListItemText primary='Pacientes' disableTypography={true} />
-        </ListItem>
+        {routerConfig.routes.map((item, index) => {
+          return (
+            <ListItem button onClick={() => history.push(item.path)} key={item.key}>
+              <ListItemIcon className={classes.listItemIcon} > {item.icon} </ListItemIcon>
+              <ListItemText primary={item.text} disableTypography={true} />
+            </ListItem>
+          );
+        })}
       </List>
       <Divider />
       <List className={classes.listBox}>
@@ -181,4 +182,4 @@ const Sidebar = props => {
   );
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto 15px',
     height: '100%'
   },
-  fuseLogo: {
-    width: 50
-  },
   tecsoLogo: {
     width: 20
   },
