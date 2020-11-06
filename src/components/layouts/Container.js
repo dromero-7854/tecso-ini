@@ -44,7 +44,7 @@ const Container = () => {
         <Box className={classes.titleBox}>
           <span className={classes.title}>Pacientes</span>
         </Box>
-        <Footer />
+        <Footer drawerOpened={drawerOpened} />
       </main>
     </div>
   );
