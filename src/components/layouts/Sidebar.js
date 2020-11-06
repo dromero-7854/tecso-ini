@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerOpen: {
     width: appConsts.DRAWER_WIDTH,
+    overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -49,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     '&:hover': {
       backgroundColor: '#37474f'
+    },
+    '& .MuiIconButton-label': {
+      marginRight: 1
     }
   },
   fullLogo: {
@@ -130,7 +134,7 @@ const Sidebar = props => {
       <div style={{ width: '100%' }}>
         <Box className={classes.userCard}>
           <Box>
-            <Typography variant='overline' display='block' noWrap='true' align='center'
+            <Typography variant='overline' display='block' noWrap={true} align='center'
               className={clsx(classes.userFullName, {
                 [classes.visible]: props.drawerOpened,
                 [classes.collapse]: !props.drawerOpened
@@ -139,7 +143,7 @@ const Sidebar = props => {
             </Typography>
           </Box>
           <Box>
-            <Typography variant='overline' display='block' noWrap='true' align='center'
+            <Typography variant='overline' display='block' noWrap={true} align='center'
               className={clsx(classes.email, {
                 [classes.visible]: props.drawerOpened,
                 [classes.collapse]: !props.drawerOpened
@@ -149,28 +153,28 @@ const Sidebar = props => {
           </Box>
         </Box>
         <Box display='flex' className={classes.avatarBox} justifyContent='center'>
-          <Avatar className={[classes.orange, classes.avatar]}>DR</Avatar>
+          <Avatar className={[classes.orange, classes.avatar].join(' ')}>DR</Avatar>
         </Box>
       </div>
       <List className={classes.listBox}>
         <ListItem button>
           <ListItemIcon className={classes.listItemIcon} > <DateRangeIcon /> </ListItemIcon>
-          <ListItemText primary='Agenda' disableTypography='true' />
+          <ListItemText primary='Agenda' disableTypography={true} />
         </ListItem>
         <ListItem button>
           <ListItemIcon className={classes.listItemIcon} > <AccountBoxIcon /> </ListItemIcon>
-          <ListItemText primary='Pacientes' disableTypography='true' />
+          <ListItemText primary='Pacientes' disableTypography={true} />
         </ListItem>
       </List>
       <Divider />
       <List className={classes.listBox}>
         <ListItem button>
           <ListItemIcon className={classes.listItemIcon} > <SettingsIcon /> </ListItemIcon>
-          <ListItemText primary='Configuración' disableTypography='true' />
+          <ListItemText primary='Configuración' disableTypography={true} />
         </ListItem>
         <ListItem button>
           <ListItemIcon className={classes.listItemIcon} > <PowerSettingsNewIcon /> </ListItemIcon>
-          <ListItemText primary='Logout' disableTypography='true' />
+          <ListItemText primary='Logout' disableTypography={true} />
         </ListItem>
       </List>
     </Drawer>
