@@ -1,9 +1,5 @@
-import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import * as appConsts from '../../consts/app-consts';
+import * as appConsts from '../../../consts/app-consts';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -34,18 +30,4 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Navbar = props => {
-  const classes = useStyles();
-  return (
-    <AppBar elevation={2} position='fixed' className={clsx(classes.appBar, { [classes.appBarShift]: props.drawerOpened })}>
-      <Toolbar>
-        <IconButton color='default' aria-label='open drawer' onClick={() => props.onChange()}
-          edge='start' className={clsx(classes.menuIcon, { [classes.hide]: props.drawerOpened })}>
-          <MenuIcon fontSize='small' />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  );
-};
-
-export default Navbar;
+export { useStyles };
