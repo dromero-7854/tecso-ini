@@ -1,20 +1,29 @@
 import React from 'react';
-import clsx from 'clsx';
 import { withRouter } from 'react-router-dom';
+import * as routerConfig from '../../../config/router/routes';
+import { compose } from 'redux';
+import { connect } from 'react-redux'
+import { logout } from '../../../actions/auth';
 import { useTheme } from '@material-ui/core/styles';
 import { Drawer, IconButton, Divider, Box, List, ListItem, ListItemIcon, ListItemText, Typography, Avatar } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import * as routerConfig from '../../../config/router/routes';
 import FullLogo from '../../../images/full-logo.png';
+import clsx from 'clsx';
 import { useStyles } from './sidebar.styles';
 
 const Sidebar = props => {
-  const { history } = props;
-  const classes = useStyles();
+
+  const { history, dispatch } = props;
   const theme = useTheme();
+  const classes = useStyles();
+
+  const logOut = () => {
+    dispatch(logout());
+  }
+
   return (
     <Drawer
       variant='permanent'
@@ -85,7 +94,7 @@ const Sidebar = props => {
           <ListItemIcon className={classes.listItemIcon} > <SettingsIcon /> </ListItemIcon>
           <ListItemText primary='Configuración' disableTypography={true} />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={logOut}>
           <ListItemIcon className={classes.listItemIcon} > <PowerSettingsNewIcon /> </ListItemIcon>
           <ListItemText primary='Logout' disableTypography={true} />
         </ListItem>
@@ -94,4 +103,4 @@ const Sidebar = props => {
   );
 };
 
-export default withRouter(Sidebar);
+export default compose(withRouter, connect())(Sidebar);

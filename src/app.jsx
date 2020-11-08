@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { withRouter, Switch, Route } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux'
+import { clearMessage } from './actions/message';
 import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core';
-import { Switch, Route } from 'react-router-dom';
 import theme from './theme/app-theme'
+import Login from './components/login/login.component'
 import Schedule from './components/views/schedule/schedule.component';
 import Patients from './components/views/patients/patients.component';
 import Navbar from './components/layout/navbar/navbar.component';
@@ -10,9 +14,23 @@ import Sidebar from './components/layout/sidebar/sidebar.component';
 import Footer from './components/layout/footer/footer.component';
 import { useStyles } from './app.styles';
 
-const App = () => {
+const App = (props) => {
   const classes = useStyles();
   const [drawerOpened, setDrawerOpened] = useState(false);
+  const { dispatch, history, isLoggedIn } = props;
+
+  history.listen(() => {
+    dispatch(clearMessage());
+  });
+
+  if (!isLoggedIn) {
+    return (
+      <ThemeProvider theme={theme} >
+        <Login />
+      </ThemeProvider>
+    )
+  }
+
   return (
     <ThemeProvider theme={theme} >
       <div className={classes.root}>
@@ -32,4 +50,11 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  const { isLoggedIn } = state.auth;
+  return {
+    isLoggedIn
+  };
+}
+
+export default compose(withRouter, connect(mapStateToProps))(App);
