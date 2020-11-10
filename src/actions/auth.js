@@ -12,12 +12,16 @@ export const login = (username, password) => (dispatch) => {
         return Promise.resolve();
       },
       (error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+        let message;
+        if (error.response && error.response.data) {
+          if (error.response.data.status === 400) {
+            message = 'Validation failed';
+          } else if (error.response.data.status === 401) {
+            message = 'Usuario o contraseña incorrectos';
+          }
+        } else {
+          message = error.message || error.toString()
+        }
         dispatch({
           type: LOGIN_FAIL
         });
