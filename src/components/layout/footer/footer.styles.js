@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { grey as muiGrey} from '@material-ui/core/colors';
 import * as appConsts from '../../../consts/app-consts';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    background: '#1e2129',
+    background: muiGrey[900],
     height: 50,
     position: 'fixed',
     left: 0,

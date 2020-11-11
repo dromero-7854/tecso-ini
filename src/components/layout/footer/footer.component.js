@@ -1,7 +1,7 @@
 import React from 'react';
-import clsx from 'clsx';
 import { Box } from '@material-ui/core';
 import TecsoLogo from '../../../images/tecso-logo.png';
+import clsx from 'clsx';
 import { useStyles } from './footer.styles';
 
 const Footer = props => {

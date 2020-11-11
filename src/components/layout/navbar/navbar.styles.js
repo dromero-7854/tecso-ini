@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { grey as muiGrey} from '@material-ui/core/colors';
 import * as appConsts from '../../../consts/app-consts';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +27,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'none'
   },
   menuIcon: {
-    color: '#1e2129'
+    color: muiGrey[800]
+  },
+  fullLogo: {
+    width: 90
+  },
+  visible: {
+    visibility: 'visible'
+  },
+  collapse: {
+    visibility: 'collapse'
   }
 }));
 

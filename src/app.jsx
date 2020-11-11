@@ -16,7 +16,7 @@ import { useStyles } from './app.styles';
 
 const App = (props) => {
   const classes = useStyles();
-  const [drawerOpened, setDrawerOpened] = useState(false);
+  const [drawerOpened, setDrawerOpened] = useState(true);
   const { dispatch, history, isLoggedIn } = props;
 
   history.listen(() => {

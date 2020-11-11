@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import deepOrange from '@material-ui/core/colors/deepOrange';
+import { deepOrange as muiDeepOrange, grey as muiGrey} from '@material-ui/core/colors';
 import * as appConsts from '../../../consts/app-consts';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,14 +26,15 @@ const useStyles = makeStyles((theme) => ({
   },
   listItemIcon: {
     minWidth: 24,
-    paddingRight: 16
+    paddingRight: 16,
+    color: muiGrey[800]
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    backgroundColor: '#1e2129',
+    backgroundColor: muiGrey[900],
     ...theme.mixins.toolbar // necessary for content to be below app bar
   },
   toggleButton: {
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     width: 90
   },
   userCard: {
-    backgroundColor: '#1e2129',
+    backgroundColor: muiGrey[900],
     padding: '0 5px 5px 5px'
   },
   userFullName: {
@@ -66,17 +67,17 @@ const useStyles = makeStyles((theme) => ({
   avatarBox: {
     height: 28,
     marginBottom: 28,
-    backgroundColor: '#1e2129'
+    backgroundColor: muiGrey[900]
   },
   avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginBottom: -20,
-    border: 'solid 2px #2d323c',
+    border: 'solid 2px ' + muiGrey[900],
   },
   orange: {
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[600],
+    color: theme.palette.getContrastText(muiDeepOrange[500]),
+    backgroundColor: muiDeepOrange[600],
   },
   listBox: {
     padding: '4px 0 4px 0'

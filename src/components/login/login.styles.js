@@ -3,8 +3,6 @@ import { TextField, Button, Checkbox, Link, Typography } from '@material-ui/core
 import { blue as muiBlue, blueGrey as muiBlueGrey, deepOrange as muiDeepOrange } from '@material-ui/core/colors';
 
 const blue = muiBlue[600];
-const btnHoverBlue = muiBlue[800];
-const checkboxHoverBlue = muiBlue[50];
 const blueGrey = muiBlueGrey[800];
 const deepOrange = muiDeepOrange[700];
 const white = '#fff';
@@ -58,11 +56,11 @@ const LoginCheckBox = withStyles({
     '&$checked': {
       color: blue,
       '&:hover': {
-        backgroundColor: checkboxHoverBlue
+        backgroundColor: muiBlue[50]
       }
     },
     '&:hover': {
-      backgroundColor: checkboxHoverBlue
+      backgroundColor: muiBlue[50]
     }
   },
   checked: {}
@@ -86,7 +84,7 @@ const LoginButton = withStyles({
     color: white,
     backgroundColor: blue,
     '&:hover': {
-      backgroundColor: btnHoverBlue
+      backgroundColor: muiBlue[800]
     }
   }
 })(Button);

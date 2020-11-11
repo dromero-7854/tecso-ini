@@ -40,7 +40,13 @@ const Sidebar = props => {
       <div className={classes.toolbar}>
         <div style={{ width: '100%' }}>
           <Box display='flex' alignItems='center'>
-            <Box display='flex' flexGrow={1}>
+            <Box
+              display='flex'
+              flexGrow={1}
+              className={clsx({
+                [classes.visible]: props.drawerOpened,
+                [classes.collapse]: !props.drawerOpened
+              })}>
               <img src={FullLogo} className={classes.fullLogo} alt='app logo' />
             </Box>
             <Box>
